@@ -7,10 +7,6 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity manchester_dec is
-	generic (
-		width	: positive := 16
-	);
-
 	port (
 		clk	: in std_logic;
 		inclk	: in std_logic;
