@@ -1,0 +1,16 @@
+Software design document
+Preamble detector block
+
+Requirements
+ 1 The preamble detector shall be able to find the ADS-B preamble (1010000101000000) in the received data stream after the data slicer
+ 2 Data shall be processed on a sample basis, as recovered clock information is not available prior to preamble detection.
+ 3 The presence of a preamble pattern in the datastream should be output via a flag immediately after detection.
+
+
+Interface
+ All logic is referenced to the system clock. Input data is sampled on the rising edge of input clock. A high-state on reset brings the system into a predictable state, discarding all internal memory. The valid-output shall be asserted for one system clock cycle as soon as the full pattern was detected.
+Input clock is used as clock-enable, it shall therefore be high only for one system clock period, if one chip is to input.
+
+Verification
+ The design shall be tested for correct function with the help of a hdl testbench. A text-file shall be used as test stimulus and has to include one bit (0 or 1) on every line. Results shall be tested vor validity using a waveform-viewer. 
+ It has to be inspected, that the assertion of valid lasts only one system clock cycle.
