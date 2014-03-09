@@ -1,0 +1,16 @@
+Software design document
+Manchester Decoder Block
+
+Requirements
+ 1 The manchester decoder shall be able to convert input data in the form of manchester encoded chips to binary data
+ 2 Error detectection shall be implemented
+ 3 Input and Output clocks shall be independent of each other, both are referenced to the system clock
+ 4 It shall be possible to reset the decoder to a known state, from which on it will start decoding manchester chips
+
+Interface
+ All logic is referenced to the system clock. Input data is sampled on the rising edge of input clock and output data is latched at the rising edge of output clock. A high-state on reset brings the system in a predictable state. The error-output goes high as soon as an error is found in the manchester stream.
+Input and output clock are used as clock-enable, therefore they may only be active for one system clock cycle if a single chip is input. 
+
+Verification
+ The design shall be tested for correct function with the help of a hdl testbench. A text-file shall be used as test stimulus and has to be formatted in the following way: first-chip, second-chip, expected binary output, expected error output.  
+ The test bench shall test that the output clock is only active for 1 system clock cycle, to be used as a clock enable for other modules. 
