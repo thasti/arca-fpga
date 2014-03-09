@@ -41,9 +41,6 @@ begin
 	process
 	variable l : line;
 	file vector_file : text is in "manchester_dec_test.txt";
-	variable space : character;
-	variable good_num : boolean;
-	variable r : real;
 	begin
 		wait until rst <= '0';
 		while not endfile(vector_file) loop
