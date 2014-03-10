@@ -69,5 +69,5 @@ begin
 			end if;
 		end if;
 	end process;
-	thresh <= (thresh_max - thresh_min) / 2;
+	thresh <= thresh_max - ((thresh_max - thresh_min) / 2);
 end behav;
