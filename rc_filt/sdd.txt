@@ -6,6 +6,7 @@ Requirements
  2 Processing shall take place on a per-sample basis.
  3 All processing shall take place in one system clock cycle
  4 The RC-filter shall have configurable time constant 
+ 5 Peak detection features for min and max peak detect shall be available
 
 Interface
  All logic is referenced to the system clock. Input data is sampled on the rising edge of input clock. A high-state on reset brings the system into a predictable state, discarding all internal memory. 

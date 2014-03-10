@@ -26,7 +26,9 @@ architecture behav of data_slicer is
 	component rc_filt
 	generic (
 		time_const	: positive;
-		width		: positive
+		width		: positive;
+		pd_min		: std_logic;
+		pd_max		: std_logic
 	);
 
 	port (
@@ -39,11 +41,17 @@ architecture behav of data_slicer is
 	);
 	end component;
 
+	signal thresh_min : signed(width-1 downto 0);
+	signal thresh_max : signed(width-1 downto 0);
 	signal thresh : signed(width-1 downto 0);
 begin
-	filter : rc_filt
-	generic map(time_const => sam_per_bit*5, width => width)
-	port map(clk, inclk, open, rst, d, signed(q) => thresh);
+	min_pd : rc_filt
+	generic map(time_const => sam_per_bit*5, width => width, pd_min => '1', pd_max => '0')
+	port map(clk, inclk, open, rst, d, signed(q) => thresh_min);
+
+	max_pd : rc_filt
+	generic map(time_const => sam_per_bit*5, width => width, pd_min => '0', pd_max => '1')
+	port map(clk, inclk, open, rst, d, signed(q) => thresh_max);
 	process
 	begin
 		wait until rising_edge(clk);
@@ -61,4 +69,5 @@ begin
 			end if;
 		end if;
 	end process;
+	thresh <= (thresh_max - thresh_min) / 2;
 end behav;

@@ -9,7 +9,9 @@ use ieee.numeric_std.all;
 entity rc_filt is
 	generic (
 		time_const	: positive := 8;
-		width		: positive := 8
+		width		: positive := 8;
+		pd_min		: std_logic := '0';
+		pd_max		: std_logic := '0'
 	);
 
 	port (
@@ -24,7 +26,6 @@ end rc_filt;
 
 architecture behav of rc_filt is
 	signal fil_out : signed(width-1 downto 0);
-	signal fil_in : signed(width-1 downto 0);
 	constant alpha : signed(width-1 downto 0) := to_signed(integer(real((2**(width-1)-1))/(real(time_const)+1.0)), width);
 begin
 	process
@@ -42,6 +43,17 @@ begin
 				-- intermediate product to help readability
 				product := alpha * (signed(d) - fil_out);
 				fil_out <= fil_out(width-1 downto 0) + product(2*width-2 downto width-1);
+				if pd_min = '1' then
+					if signed(d) < fil_out then
+						fil_out <= signed(d);
+					end if;
+				end if;
+				if pd_max = '1' then
+					if signed(d) > fil_out then
+						fil_out <= signed(d);
+					end if;
+				end if;
+				
 				outclk <= '1';
 			end if;
 		end if;
