@@ -1,0 +1,18 @@
+Software design document
+Data slicer block
+Information about slicing can be found here: 
+http://www.maximintegrated.com/app-notes/index.mvp/id/3671
+
+Requirements
+ 1 The data slicer shall be able to use the raw data samples and compare them to an internal threshold to generate binary (0 or 1) output signals.
+ 2 Processing shall take place on a per-sample basis.
+ 3 All processing shall take place in one system clock cycle
+ 4 Threshold generation shall be done with digital RC low pass filter blocks.
+
+
+Interface
+ All logic is referenced to the system clock. Input data is sampled on the rising edge of input clock. A high-state on reset brings the system into a predictable state, discarding all internal memory. 
+Input clock is used as clock-enable, it shall therefore be high only for one system clock period, if one sample is to input.
+
+Verification
+ The design shall be tested for correct function with the help of a hdl testbench. A text-file shall be used as test stimulus and has to include one sample on every line. Results shall be written to a output file and be analysed with a waveform viewer afterwards.
