@@ -1,13 +1,13 @@
 #!/bin/bash
 
 TIME=200us
-
+UNIT=rc_filt_tb
 ghdl --clean
-ghdl -a $1.vhd
-ghdl -e $1
-ghdl -m $1
+ghdl -a $UNIT.vhd
+ghdl -e $UNIT
+ghdl -m $UNIT 
 
 echo "[ TIME SIMULATION ]";
-ghdl -r $1 --wave=output.ghw  --stop-time=$TIME
+ghdl -r $UNIT --wave=output.ghw  --stop-time=$TIME
 gtkwave output.ghw gtkwave.sav
 ghdl --clean
