@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.51 (w)1999-2013 BSI
-[*] Mon Mar 10 11:02:51 2014
+[*] Mon Mar 10 12:40:13 2014
 [*]
 [dumpfile] "/home/thasti/projekte/arca/vhdl/rc_filt/output.ghw"
-[dumpfile_mtime] "Mon Mar 10 11:02:46 2014"
-[dumpfile_size] 30270
+[dumpfile_mtime] "Mon Mar 10 12:40:09 2014"
+[dumpfile_size] 29886
 [savefile] "/home/thasti/projekte/arca/vhdl/rc_filt/gtkwave.sav"
-[timestart] 0
+[timestart] 320000000
 [size] 1024 551
 [pos] -1 -1
-*-35.000000 13950000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-32.000000 4350000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.rc_filt_tb.
 [treeopen] top.rc_filt_tb.dut.
@@ -28,10 +28,12 @@ top.rc_filt_tb.inclk
 -
 @28
 top.rc_filt_tb.outclk
-@88023
+@88022
 #{top.rc_filt_tb.q[7:0]} top.rc_filt_tb.q[7] top.rc_filt_tb.q[6] top.rc_filt_tb.q[5] top.rc_filt_tb.q[4] top.rc_filt_tb.q[3] top.rc_filt_tb.q[2] top.rc_filt_tb.q[1] top.rc_filt_tb.q[0]
 @20000
 -
 -
+@22
+#{top.rc_filt_tb.dut.fil_out[7:0]} top.rc_filt_tb.dut.fil_out[7] top.rc_filt_tb.dut.fil_out[6] top.rc_filt_tb.dut.fil_out[5] top.rc_filt_tb.dut.fil_out[4] top.rc_filt_tb.dut.fil_out[3] top.rc_filt_tb.dut.fil_out[2] top.rc_filt_tb.dut.fil_out[1] top.rc_filt_tb.dut.fil_out[0]
 [pattern_trace] 1
 [pattern_trace] 0

@@ -15,8 +15,12 @@ for i=1:length(in)
 end
 
 %stem(in)
+subplot(2,1,1)
 hold on
 grid on
 stem(out_quant(2:end),'r');
-stem(out_vhdl,'m');
 stem(out_ideal(2:end),'b');
+stem(out_vhdl,'m');
+subplot(2,1,2)
+err = out_ideal(1:end-1)-double(out_vhdl);
+hist(err,20)

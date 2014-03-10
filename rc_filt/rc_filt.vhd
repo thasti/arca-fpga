@@ -24,7 +24,6 @@ end rc_filt;
 
 architecture behav of rc_filt is
 	signal fil_out : signed(width-1 downto 0);
-	signal fil_out_d : signed(width-1 downto 0);
 	signal fil_in : signed(width-1 downto 0);
 begin
 	process
@@ -35,17 +34,13 @@ begin
 		outclk <= '0';
 		if rst = '1' then
 			fil_out <= (others => '0');
-			fil_out_d <= (others => '0');
-			fil_in <= (others => '0');
 			product := (others => '0');
 		else 
 			if inclk = '1' then
-				fil_in <= signed(d);
-				fil_out_d <= fil_out;
 				-- y[i] := y[i-1] + tc * (x[i] - y[i-1])
 				-- intermediate product to help readability
-				product := to_signed(time_const, width) * (fil_in - fil_out_d);
-				fil_out <= fil_out_d(width-1 downto 0) + product(2*width-1 downto width);
+				product := to_signed(time_const, width) * (signed(d) - fil_out);
+				fil_out <= fil_out(width-1 downto 0) + product(2*width-2 downto width-1);
 				outclk <= '1';
 			end if;
 		end if;

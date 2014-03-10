@@ -11,8 +11,8 @@ end rc_filt_tb;
 architecture behav of rc_filt_tb is
 	component rc_filt
 	generic (
-		time_const	: positive := 8;
-		width		: positive := 8
+		time_const	: positive;
+		width		: positive
 	);
 
 	port (
@@ -53,6 +53,7 @@ begin
 			d <= std_logic_vector(to_signed(input, 8));
 			wait until rising_edge(clk);
 			inclk <= '0';
+			-- insert delay cycles
 			wait until rising_edge(clk);
 			wait until rising_edge(clk);
 		end loop;
