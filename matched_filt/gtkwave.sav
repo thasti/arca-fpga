@@ -1,0 +1,38 @@
+[*]
+[*] GTKWave Analyzer v3.3.51 (w)1999-2013 BSI
+[*] Mon Mar 10 20:39:50 2014
+[*]
+[dumpfile] "/home/thasti/projekte/arca/vhdl/matched_filt/output.ghw"
+[dumpfile_mtime] "Mon Mar 10 20:39:27 2014"
+[dumpfile_size] 31004
+[savefile] "/home/thasti/projekte/arca/vhdl/matched_filt/gtkwave.sav"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-34.000000 17220000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.matched_filt_tb.
+[treeopen] top.matched_filt_tb.dut.
+[treeopen] top.matched_filt_tb.dut.delay.
+[sst_width] 216
+[signals_width] 164
+[sst_expanded] 1
+[sst_vpaned_height] 153
+@28
+top.matched_filt_tb.rst
+top.matched_filt_tb.clk
+top.matched_filt_tb.inclk
+@88022
+#{top.matched_filt_tb.d[7:0]} top.matched_filt_tb.d[7] top.matched_filt_tb.d[6] top.matched_filt_tb.d[5] top.matched_filt_tb.d[4] top.matched_filt_tb.d[3] top.matched_filt_tb.d[2] top.matched_filt_tb.d[1] top.matched_filt_tb.d[0]
+@20000
+-
+-
+@28
+top.matched_filt_tb.outclk
+@88022
+#{top.matched_filt_tb.q[7:0]} top.matched_filt_tb.q[7] top.matched_filt_tb.q[6] top.matched_filt_tb.q[5] top.matched_filt_tb.q[4] top.matched_filt_tb.q[3] top.matched_filt_tb.q[2] top.matched_filt_tb.q[1] top.matched_filt_tb.q[0]
+@20000
+-
+-
+[pattern_trace] 1
+[pattern_trace] 0

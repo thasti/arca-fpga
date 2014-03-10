@@ -1,0 +1,16 @@
+Software design document
+Matched Filter
+
+Requirements
+ 1 The matched filter shall convolve digital input signals with a pulse train as filter coefficients.
+ 2 Processing shall take place on a per-sample basis.
+ 3 All processing shall take place in one system clock cycle
+ 4 The length of the pulse train has to be adjustable via generic
+ 5 DC gain shall be 1
+
+Interface
+ All logic is referenced to the system clock. Input data is sampled on the rising edge of input clock. A high-state on reset brings the system into a predictable state, discarding all internal memory. 
+Input clock is used as clock-enable, it shall therefore be high only for one system clock period, if one sample is to input. Generics have to be available to input length of the pulse train. Output data shall be valid on rising edge of output clock. Output clock shall only be active for 1 clock cycle, to be used as a clock enable afterwards.
+
+Verification
+ The design shall be tested for correct function with the help of a hdl testbench. A text-file shall be used as test stimulus and has to include one input sample on every line. Results shall be written to a output file and verified afterwards, by means of visual waveform inspection.
