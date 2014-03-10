@@ -1,0 +1,15 @@
+Software design document
+Digital RC low pass filter block
+
+Requirements
+ 1 RC filter block shall filter a discrete, digital signal by means of a digital RC low pass filter
+ 2 Processing shall take place on a per-sample basis.
+ 3 All processing shall take place in one system clock cycle
+ 4 The RC-filter shall have configurable time constant 
+
+Interface
+ All logic is referenced to the system clock. Input data is sampled on the rising edge of input clock. A high-state on reset brings the system into a predictable state, discarding all internal memory. 
+Input clock is used as clock-enable, it shall therefore be high only for one system clock period, if one sample is to input. Generics have to be available to input time constant.
+
+Verification
+ The design shall be tested for correct function with the help of a hdl testbench. A text-file shall be used as test stimulus and has to include one input sample on every line. Results shall be written to a output file and verified with a matlab script afterwards. This verification includes visual inspection of the output waveform and time domain error distribution.
