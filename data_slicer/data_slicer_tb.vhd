@@ -11,7 +11,8 @@ end data_slicer_tb;
 architecture behav of data_slicer_tb is
 	component data_slicer
 	generic (
-		width		: positive
+		width		: positive;
+		sam_per_bit	: positive
 	);
 
 	port (
@@ -33,7 +34,7 @@ signal q	: std_logic;
 
 begin 
 	dut : data_slicer
-	generic map (width => 8)
+	generic map (width => 8, sam_per_bit => 8)
 	port map (clk, inclk, outclk, rst, d, q);
 	clk <= not clk after 50 ns;
 	rst <= '0' after 200 ns;

@@ -8,7 +8,8 @@ use ieee.numeric_std.all;
 
 entity data_slicer is
 	generic (
-		width		: positive := 8
+		width		: positive := 8;
+		sam_per_bit	: positive := 8
 	);
 
 	port (
@@ -41,7 +42,7 @@ architecture behav of data_slicer is
 	signal thresh : signed(width-1 downto 0);
 begin
 	filter : rc_filt
-	generic map(time_const => 5, width => width)
+	generic map(time_const => sam_per_bit*5, width => width)
 	port map(clk, inclk, open, rst, d, signed(q) => thresh);
 	process
 	begin

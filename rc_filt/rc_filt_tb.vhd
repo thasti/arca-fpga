@@ -34,7 +34,7 @@ signal q	: std_logic_vector(7 downto 0);
 
 begin 
 	dut : rc_filt
-	generic map (time_const => 20, width => 8)
+	generic map (time_const => 10, width => 8)
 	port map (clk, inclk, outclk, rst, d, q);
 	clk <= not clk after 50 ns;
 	rst <= '0' after 200 ns;
