@@ -1,0 +1,15 @@
+Software design document
+Receiver Design
+
+Requirements
+ 1 The ADS-B receiver shall be able to convert ADC input samples to binary symbols, find preambles and decode the following frames completely
+ 2 The receiver shall detect 56 and 112 bit packets and end the receiving process accordingly
+ 3 DF17 frames shall be tested for correct CRC sum
+ 4 Data messages shall be output via UART at 1Mbaud. 
+
+Interface
+The receiver design interconnects the various blocks in this repository. The receiver external interface consists of the system clock, the ADC clock, the ADC data pins, and the UART interface. LEDs for status purposes may be connected, but are not mandatory.
+
+Verification
+As all blocks are tested and verified on their own, only the system as a whole has to be tested for correct processing. Testing shall be with done with a text file, containing ADC samples as the input. As visual inspection of the design with the help of a waveform viewer is mandatory, focus shall be on correct timing (input delay) for every block. 
+The input text file shall be generated with the help of Matlab, using latest adsb_gen.m and dlmwrite to generate valid frames at any sample rate. 
