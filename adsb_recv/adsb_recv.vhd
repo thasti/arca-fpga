@@ -26,6 +26,9 @@ architecture behav of adsb_recv is
 	constant fs_msps : positive := 16;
 	constant fsys	: positive := 32;
 
+	-- matched filter
+	signal mf_clk : std_logic;
+	signal mf_q : std_logic_vector(width-1 downto 0);
 	-- data slicer output
 	signal ds_d : std_logic;	
 	signal ds_clk : std_logic;
@@ -35,14 +38,24 @@ architecture behav of adsb_recv is
 	signal manchester_err : std_logic;
 	-- preamble detector
 	signal preamble_found : std_logic;
+
 begin
-	
+
+	matched_filt : entity work.matched_filt
+		generic map (filter_len => fs_msps/2, width => width)
+		port map (clk => clk,
+			  rst => rst,
+			  inclk => clk,
+			  outclk => mf_clk,
+			  d => adc_d,
+			  q => mf_q);
+
 	data_slicer : entity work.data_slicer
 		generic map (width => adc_bits, sam_per_bit => fs_msps/2)
 		port map (clk => clk, 
 			  rst => rst, 
-			  inclk => clk, 
-			  d => adc_d, 
+			  inclk => mf_clk, 
+			  d => mf_q, 
 			  outclk => ds_clk, 
 			  q => ds_d); 
 
