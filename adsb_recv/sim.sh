@@ -3,6 +3,7 @@
 TIME=200us
 UNIT=adsb_recv_tb
 ghdl --clean
+ghdl -a ../early_late/early_late.vhd
 ghdl -a ../rc_filt/rc_filt.vhd
 ghdl -a ../matched_filt/matched_filt.vhd
 ghdl -a ../data_slicer/data_slicer.vhd

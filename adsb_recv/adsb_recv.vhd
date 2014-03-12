@@ -29,6 +29,8 @@ architecture behav of adsb_recv is
 	-- matched filter
 	signal mf_clk : std_logic;
 	signal mf_q : std_logic_vector(width-1 downto 0);
+	-- clock recovery
+	signal rec_clk : std_logic;
 	-- data slicer output
 	signal ds_d : std_logic;	
 	signal ds_clk : std_logic;
@@ -39,8 +41,10 @@ architecture behav of adsb_recv is
 	-- preamble detector
 	signal preamble_found : std_logic;
 
+	signal bit_reset : std_logic;
 begin
 
+	
 	matched_filt : entity work.matched_filt
 		generic map (filter_len => fs_msps/2, width => width)
 		port map (clk => clk,
@@ -49,6 +53,14 @@ begin
 			  outclk => mf_clk,
 			  d => adc_d,
 			  q => mf_q);
+	
+	early_late : entity work.early_late
+		generic map (width => width, sam_per_bit => fs_msps/2)
+		port map (clk => clk,
+			  rst => bit_reset,
+			  inclk => mf_clk,
+			  d => mf_q,
+			  outclk => rec_clk);
 
 	data_slicer : entity work.data_slicer
 		generic map (width => adc_bits, sam_per_bit => fs_msps/2)
@@ -61,8 +73,8 @@ begin
 
 	manchester_dec : entity work.manchester_dec
 		port map (clk => clk,
-			  rst => preamble_found,
-			  inclk => ds_clk,
+			  rst => bit_reset,
+			  inclk => rec_clk,
 			  d => ds_d,
 			  outclk => bit_clk,
 			  q => bit_d,
@@ -76,6 +88,7 @@ begin
 			  d => ds_d,
 			  valid => preamble_found);
 
+	bit_reset <= rst or preamble_found;
 	process
 	begin
 		wait until rising_edge(clk);
