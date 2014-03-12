@@ -1,0 +1,21 @@
+Software design document
+Early-Late-Timing recovery
+
+Requirements
+ 1 The early-late-gate timing block shall recover the best sampling instants for bits at high oversampling rates 
+ 2 Processing shall take place on a per-sample basis.
+ 3 The early-late shall output a corrected clock based on its correction  
+
+Interface
+ All logic is referenced to the system clock. Input data is sampled on the rising edge of input clock. A high-state on reset brings the system into a predictable state, discarding all internal memory. Recovering of the clock shall reset as if the first clock generation sample will occur one bit time in the future.
+Input clock is used as clock-enable, it shall therefore be high only for one system clock period, if one sample is to input. Generics have to be available to input data width. Output data shall be valid on rising edge of output clock. Output clock shall only be active for 1 clock cycle, to be used as a clock enable afterwards.
+
+Verification
+ The design shall be tested for correct function with the help of a hdl testbench. A text-file shall be used as test stimulus and has to include one input sample on every line. Results shall be written to a output file and verified afterwards, by means of visual waveform inspection.
+
+reset: zähler auf -samp_per_bit/2
+0 = start
+2 = early
+samp_per_bit/2 = middle
+samp_per_bit - 2 = late, korrektur zähler (+1, -1, 0)
+
