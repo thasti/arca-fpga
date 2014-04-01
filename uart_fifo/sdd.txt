@@ -1,0 +1,14 @@
+Software design document
+UART with FIFO-Interface
+
+Requirements
+ 1 The UART shall be able to transmit bytes in 8N1-Format via a GPIO.
+ 2 Transmission speed of the UART shall be configurable.
+ 3 Bytes shall be input asyncronously to the UART bit clock by means of a FIFO
+ 4 The FIFO shall be continuously emptied by the UART.
+
+Interface
+ All logic is referenced to the system clock. Parallel (8 bit) FIFO input data is sampled on the rising edge of input clock. A high-state on reset brings the system into a predictable state, including clearing the FIFO. Assertion of the write pin signals writing into the FIFO from the left, data is read out the right side. Reading from the left and writing from the right side is not supported.
+
+Verification
+ The design shall be tested for correct function with the help of a hdl testbench. A text-file shall be used as test stimulus and has to include one data byte on every line. Results shall be analysed and verified with a waveform viewer afterwards.
