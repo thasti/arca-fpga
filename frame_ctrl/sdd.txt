@@ -1,0 +1,13 @@
+Software design document
+Frame controller unit
+The frame controller implements the neccesary "glue logic" to interface the manchester decoder and preamble detector together with the UART FIFO. When the start of a frame is detected, the controller is armed and will shift the incoming bits from the manchester decoder into an internal register. After the first byte, the length of the packet is determined by analysing the type code of the frame. All 7 / 14 bits are then put into the UART FIFO for asyncronous transmission. 
+
+Requirements
+ 1 The frame controller shall get all input bits (on input clock active) from one frame and put them into the UART FIFO.
+ 2 The frame controller shall add an additional line break (\n) after every frame 
+
+Interface
+ All logic is referenced to the system clock. A high-state on reset brings the system into a predictable state. The Start-of-frame input restarts the internal logic.
+
+Verification
+ The design shall be tested for correct function with the help of a hdl testbench. A text-file shall be used as test stimulus and has to include one data byte on every line. Results shall be analysed and verified with a waveform viewer afterwards. Alternatively, the ADS-B receiver design shall use the controller and the input frame shall be visible on the output.
