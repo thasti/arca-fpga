@@ -38,7 +38,6 @@ begin
 				state <= not state;
 				if state = '1' then
 					outclk <= '1';
-					err <= '0';
 					q <= d_d;
 					-- 11 or 00 is error condition
 					if (d xor d_d) = '0' then
