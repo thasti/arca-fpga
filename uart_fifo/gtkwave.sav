@@ -1,0 +1,50 @@
+[*]
+[*] GTKWave Analyzer v3.3.51 (w)1999-2013 BSI
+[*] Wed Apr  2 09:00:59 2014
+[*]
+[dumpfile] "/home/thasti/projekte/arca/vhdl/uart_fifo/output.ghw"
+[dumpfile_mtime] "Wed Apr  2 09:00:41 2014"
+[dumpfile_size] 457129
+[savefile] "/home/thasti/projekte/arca/vhdl/uart_fifo/gtkwave.sav"
+[timestart] 0
+[size] 1024 551
+[pos] 0 0
+*-38.000000 160000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.uart_tb.
+[treeopen] top.uart_tb.tx0.
+[treeopen] top.uart_tb.tx0.shift0.
+[sst_width] 216
+[signals_width] 118
+[sst_expanded] 1
+[sst_vpaned_height] 136
+@28
+top.uart_tb.clk
+top.uart_tb.rst
+@200
+-
+@22
+#{top.uart_tb.d[7:0]} top.uart_tb.d[7] top.uart_tb.d[6] top.uart_tb.d[5] top.uart_tb.d[4] top.uart_tb.d[3] top.uart_tb.d[2] top.uart_tb.d[1] top.uart_tb.d[0]
+@28
+top.uart_tb.we
+@200
+-
+@22
+#{top.uart_tb.tx0.fifo0.q[7:0]} top.uart_tb.tx0.fifo0.q[7] top.uart_tb.tx0.fifo0.q[6] top.uart_tb.tx0.fifo0.q[5] top.uart_tb.tx0.fifo0.q[4] top.uart_tb.tx0.fifo0.q[3] top.uart_tb.tx0.fifo0.q[2] top.uart_tb.tx0.fifo0.q[1] top.uart_tb.tx0.fifo0.q[0]
+@28
+top.uart_tb.tx0.fifo0.re
+top.uart_tb.tx0.fifo0.empty
+@200
+-
+@22
+#{top.uart_tb.tx0.uart_d[9:0]} top.uart_tb.tx0.uart_d[9] top.uart_tb.tx0.uart_d[8] top.uart_tb.tx0.uart_d[7] top.uart_tb.tx0.uart_d[6] top.uart_tb.tx0.uart_d[5] top.uart_tb.tx0.uart_d[4] top.uart_tb.tx0.uart_d[3] top.uart_tb.tx0.uart_d[2] top.uart_tb.tx0.uart_d[1] top.uart_tb.tx0.uart_d[0]
+@28
+top.uart_tb.tx0.asm0.busy_out
+top.uart_tb.tx0.asm0.trigger
+@200
+-
+@28
+top.uart_tb.tx0.load
+top.uart_tb.tx
+[pattern_trace] 1
+[pattern_trace] 0

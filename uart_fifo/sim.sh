@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TIME=200us
+TIME=500us
 UNIT=uart_tb
 ghdl --clean
 ghdl -a $UNIT.vhd

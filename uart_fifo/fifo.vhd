@@ -1,15 +1,10 @@
- -- title:              First In First Out(FIFO)
- -- author:             Sebastian Weiss(DL3YC)
- -- last change:        09.09.13(DL3YC)
-
-
+-- first in first out (FIFO)
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use IEEE.math_real.all;
 
 entity fifo is
-
         generic
         (
                 num_words       : positive      := 8;                   -- FIFO Depth
