@@ -4,7 +4,8 @@ The frame controller implements the neccesary "glue logic" to interface the manc
 
 Requirements
  1 The frame controller shall get all input bits (on input clock active) from one frame and put them into the UART FIFO.
- 2 The frame controller shall add an additional line break (\n) after every frame 
+ 2 Frames shall be converted to hexadecimal ASCII-notation for transmission.
+ 3 The frame controller shall add an additional line break (\n) after every frame 
 
 Interface
  All logic is referenced to the system clock. A high-state on reset brings the system into a predictable state. The Start-of-frame input restarts the internal logic.
