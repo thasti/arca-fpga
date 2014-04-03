@@ -40,6 +40,9 @@ architecture behav of adsb_recv is
 	signal manchester_err : std_logic;
 	-- preamble detector
 	signal preamble_found : std_logic;
+	-- UART FIFO
+	signal fifo_d : std_logic_vector(7 downto 0);
+	signal fifo_we : std_logic;
 
 	signal bit_reset : std_logic;
 begin
@@ -87,6 +90,22 @@ begin
 		 	  inclk => ds_clk,
 			  d => ds_d,
 			  valid => preamble_found);
+	uart_fifo : entity work.uart
+		generic map (fifo_depth => 64)
+		port map (clk => clk,
+			  rst => rst,
+			  we => fifo_we,
+			  d => fifo_d,
+			  tx => uart_tx);
+	frame_ctrl : entity work.frame_ctrl
+		port map (clk => clk,
+			  rst => rst,
+			  sof => preamble_found,
+			  inclk => bit_clk,
+			  d => bit_d,
+			  fifo_d => fifo_d,
+			  fifo_we => fifo_we);
+
 
 	bit_reset <= rst or preamble_found;
 	process

@@ -30,6 +30,18 @@ architecture behav of frame_ctrl is
 	signal last 	: std_logic := '0';
 	type wr_state_type is (high, low, none);
 	signal wr_state : wr_state_type := none;
+	type hex_table_type is array (0 to 15) of std_logic_vector(7 downto 0);
+	signal hex_table : hex_table_type := (x"30",x"31",x"32",x"33",x"34",x"35",x"36",x"37",x"38",x"39",x"41",x"42",x"43",x"44",x"45",x"46");
+
+
+
+
+
+
+
+
+
+
 begin
 	process
 	begin
@@ -72,17 +84,17 @@ begin
 					case wr_state is
 						when high =>
 							fifo_we <= '1';
-							-- TODO implement LUT
-							fifo_d <= x"01";
+							fifo_d <= hex_table(to_integer(unsigned(lat(7 downto 4))));
 							wr_state <= low;
 						when low =>
 							fifo_we <= '1';
-							-- TODO implement LUT
-							fifo_d <= x"02";
+							fifo_d <= hex_table(to_integer(unsigned(lat(3 downto 0))));
 							wr_state <= none;
 						when none =>
 							fifo_we <= '0';
-							state <= lf;
+							if last = '1' then
+								state <= lf;
+							end if;
 					end case;
 					-- if sof = '1' then
 						-- fifo_we <= '0';
