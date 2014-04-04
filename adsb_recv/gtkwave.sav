@@ -1,19 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.51 (w)1999-2013 BSI
-[*] Thu Apr  3 07:29:24 2014
+[*] Fri Apr  4 07:34:36 2014
 [*]
 [dumpfile] "/home/thasti/projekte/arca/vhdl/adsb_recv/output.ghw"
-[dumpfile_mtime] "Thu Apr  3 07:28:47 2014"
-[dumpfile_size] 2970072
+[dumpfile_mtime] "Fri Apr  4 07:34:14 2014"
+[dumpfile_size] 8208940
 [savefile] "/home/thasti/projekte/arca/vhdl/adsb_recv/gtkwave.sav"
-[timestart] 20030000000
+[timestart] 0
 [size] 1024 551
 [pos] 0 0
-*-33.000000 32850000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-43.000000 764150000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.adsb_recv_tb.
 [treeopen] top.adsb_recv_tb.dut.
-[treeopen] top.adsb_recv_tb.dut.frame_ctrl.
+[treeopen] top.adsb_recv_tb.dut.uart_fifo.
 [sst_width] 216
 [signals_width] 150
 [sst_expanded] 1
@@ -64,12 +64,18 @@ top.adsb_recv_tb.dut.manchester_dec.err
 @28
 top.adsb_recv_tb.dut.frame_ctrl.sof
 top.adsb_recv_tb.dut.frame_ctrl.state
-@23
-#{top.adsb_recv_tb.dut.frame_ctrl.lat[7:0]} top.adsb_recv_tb.dut.frame_ctrl.lat[7] top.adsb_recv_tb.dut.frame_ctrl.lat[6] top.adsb_recv_tb.dut.frame_ctrl.lat[5] top.adsb_recv_tb.dut.frame_ctrl.lat[4] top.adsb_recv_tb.dut.frame_ctrl.lat[3] top.adsb_recv_tb.dut.frame_ctrl.lat[2] top.adsb_recv_tb.dut.frame_ctrl.lat[1] top.adsb_recv_tb.dut.frame_ctrl.lat[0]
 @22
+#{top.adsb_recv_tb.dut.frame_ctrl.lat[7:0]} top.adsb_recv_tb.dut.frame_ctrl.lat[7] top.adsb_recv_tb.dut.frame_ctrl.lat[6] top.adsb_recv_tb.dut.frame_ctrl.lat[5] top.adsb_recv_tb.dut.frame_ctrl.lat[4] top.adsb_recv_tb.dut.frame_ctrl.lat[3] top.adsb_recv_tb.dut.frame_ctrl.lat[2] top.adsb_recv_tb.dut.frame_ctrl.lat[1] top.adsb_recv_tb.dut.frame_ctrl.lat[0]
 #{top.adsb_recv_tb.dut.frame_ctrl.fifo_d[7:0]} top.adsb_recv_tb.dut.frame_ctrl.fifo_d[7] top.adsb_recv_tb.dut.frame_ctrl.fifo_d[6] top.adsb_recv_tb.dut.frame_ctrl.fifo_d[5] top.adsb_recv_tb.dut.frame_ctrl.fifo_d[4] top.adsb_recv_tb.dut.frame_ctrl.fifo_d[3] top.adsb_recv_tb.dut.frame_ctrl.fifo_d[2] top.adsb_recv_tb.dut.frame_ctrl.fifo_d[1] top.adsb_recv_tb.dut.frame_ctrl.fifo_d[0]
 @28
 top.adsb_recv_tb.dut.frame_ctrl.fifo_we
+@29
+top.adsb_recv_tb.dut.uart_fifo.fifo0.empty
+@28
+top.adsb_recv_tb.dut.uart_fifo.fifo0.re
+@22
+#{top.adsb_recv_tb.dut.uart_fifo.uart_d[9:0]} top.adsb_recv_tb.dut.uart_fifo.uart_d[9] top.adsb_recv_tb.dut.uart_fifo.uart_d[8] top.adsb_recv_tb.dut.uart_fifo.uart_d[7] top.adsb_recv_tb.dut.uart_fifo.uart_d[6] top.adsb_recv_tb.dut.uart_fifo.uart_d[5] top.adsb_recv_tb.dut.uart_fifo.uart_d[4] top.adsb_recv_tb.dut.uart_fifo.uart_d[3] top.adsb_recv_tb.dut.uart_fifo.uart_d[2] top.adsb_recv_tb.dut.uart_fifo.uart_d[1] top.adsb_recv_tb.dut.uart_fifo.uart_d[0]
+@28
 top.adsb_recv_tb.uart_tx
 [pattern_trace] 1
 [pattern_trace] 0

@@ -33,15 +33,6 @@ architecture behav of frame_ctrl is
 	type hex_table_type is array (0 to 15) of std_logic_vector(7 downto 0);
 	signal hex_table : hex_table_type := (x"30",x"31",x"32",x"33",x"34",x"35",x"36",x"37",x"38",x"39",x"41",x"42",x"43",x"44",x"45",x"46");
 
-
-
-
-
-
-
-
-
-
 begin
 	process
 	begin
@@ -51,6 +42,8 @@ begin
 			lat <= (others => '0');
 			bytecnt <= (others => '0');
 			bitcnt <= (others => '0');
+			state <= idle;
+			wr_state <= none;
 		else 
 			case state is
 				when idle =>
@@ -76,7 +69,7 @@ begin
 								-- check frame type
 								-- set bytecnt correctly
 							end if;
-							if (bitcnt = 0) and (bytecnt = 14) then
+							if (bitcnt = 0) and (bytecnt = 13) then
 								last <= '1';
 							end if;
 						end if;

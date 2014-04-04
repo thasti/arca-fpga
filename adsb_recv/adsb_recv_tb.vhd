@@ -18,7 +18,7 @@ architecture behav of adsb_recv_tb is
 	port (
 		clk	: in std_logic;
 		rst	: in std_logic;
-		adcclk	: out std_logic;
+		adcclk	: in std_logic;
 		adc_d	: in std_logic_vector(width-1 downto 0);
 		uart_tx	: out std_logic
 	);

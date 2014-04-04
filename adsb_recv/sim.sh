@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TIME=20ms
+TIME=30ms
 UNIT=adsb_recv_tb
 ghdl --clean
 ghdl -a ../early_late/early_late.vhd

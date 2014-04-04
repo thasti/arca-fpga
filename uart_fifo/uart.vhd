@@ -108,7 +108,7 @@ begin
 		port map (clk => clk, en => trigger, load => load, P_S => P_S, D => uart_d, Q => sr_Q);
 	 
 	fifo0 : fifo
-		generic map(num_words => 32, word_width => 8) 
+		generic map(num_words => fifo_depth, word_width => 8, al_empty_lvl => 3, al_full_lvl => 3) 
 		port map (clk => clk, rst => rst, d => d, we => we, q => uart_d(8 downto 1), re => fifo_re, empty => fifo_empty);
 		
 	uart_d(9) <= start_bit;
