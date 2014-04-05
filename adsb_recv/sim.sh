@@ -3,6 +3,7 @@
 TIME=30ms
 UNIT=adsb_recv_tb
 ghdl --clean
+ghdl -a ../led_timer/led_timer.vhd
 ghdl -a ../early_late/early_late.vhd
 ghdl -a ../rc_filt/rc_filt.vhd
 ghdl -a ../matched_filt/matched_filt.vhd

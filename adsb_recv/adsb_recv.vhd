@@ -17,7 +17,8 @@ entity adsb_recv is
 		rst	: in std_logic;
 		adcclk	: in std_logic;
 		adc_d	: in std_logic_vector(width-1 downto 0);
-		uart_tx	: out std_logic
+		uart_tx	: out std_logic;
+		sof_led	: out std_logic
 	);
 end adsb_recv;
 
@@ -105,6 +106,13 @@ begin
 			  d => bit_d,
 			  fifo_d => fifo_d,
 			  fifo_we => fifo_we);
+
+	sof_led_timer : entity work.led_timer
+		generic map (on_time_exp => 22)
+		port map (clk => clk,
+			  rst => rst,
+			  input => preamble_found,
+			  led => sof_led);
 
 
 	bit_reset <= rst or preamble_found;
