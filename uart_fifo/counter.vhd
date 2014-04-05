@@ -30,20 +30,13 @@ begin
 	begin
 	
 		if (rst_n = '0') then
-		
 		cnt <= (others => '0');
-	
 		elsif (rising_edge(clk)) then
-
 			if (clear = '1') then
-			
 			cnt <= (others => '0');
-			
 			elsif (enable = '1') then
-			
 				-- count up
 				cnt <= std_logic_vector(unsigned(cnt) + 1);
-
 			end if;
 		end if;
 	end process;
