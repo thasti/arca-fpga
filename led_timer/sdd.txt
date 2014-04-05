@@ -1,0 +1,5 @@
+Software design document
+LED timer unit
+
+This simple block shall be able to make short signals visible to the outside world via LEDs. It will be used to indicate the "start of frame" pulses from the preamble detector, so every preamble generates a long pulse on an LED. The hold-time of the LED is configurable via generics.
+Another input signal resets the delay time and will keep the LED on.
