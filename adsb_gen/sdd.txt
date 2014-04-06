@@ -1,0 +1,16 @@
+Software design document
+ADS-B test frame generator (TFG)
+
+Requirements
+ 1 The TFG shall be able to generate frames, whose format fits those of ADS-B data. 
+ 2 Data Format codes and frame length shall be configurable, to test the frame controller for correct handling of short frames
+ 3 The preamble pattern shouls be configurable to test the receiver for false-positives
+ 4 ICAO and payload data shall be dynamic
+ 5 checksums shall be incorrect to get frames discarded by real receivers in case of accidental transmission over the air
+ 6 the generator shall have a trigger-input to start generation of a single frame
+
+Interface
+ All logic is referenced to the system clock. The trigger is sampled on the rising edge of input clock. A high-state on reset brings the system into a predictable idle state, waiting for a new trigger. Generics shall be available to configure frame length (at least 8 .. 130 bits) plus preamble.
+
+Verification
+ The design shall be tested for correct function with the help of a hdl testbench. The frames shall be analysed in a waveform viewer and used in a simulated receiver design. This makes it possible to test for correct decoding of the generated frames, as soon as the output of the TFG is verified to be correct.

@@ -11,6 +11,9 @@ From the recovered clock and data from the slicer, the manchester decoder recons
 
 ## VHDL entities
 
+### adsb\_gen
+the test frame generator can produce arbitrary ADS-B-like frames for analysis and testing of the receiver
+
 ### adsb\_recv
 this is the receiver design, connecting the various submodules, instantiating all components etc.
 
