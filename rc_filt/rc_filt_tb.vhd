@@ -52,7 +52,7 @@ begin
 			read(l, input);
 			wait until rising_edge(clk);
 			inclk <= '1';
-			d <= std_logic_vector(to_signed(input, 8));
+			d <= std_logic_vector(to_unsigned(input, 8));
 			wait until rising_edge(clk);
 			inclk <= '0';
 			-- insert delay cycles
@@ -67,7 +67,7 @@ begin
 	begin
 		wait until rising_edge(clk);
 		if outclk = '1' then
-			write(lo, to_integer(signed(q)));
+			write(lo, to_integer(unsigned(q)));
 			writeline(output_file, lo);
 		end if;
 	end process;
