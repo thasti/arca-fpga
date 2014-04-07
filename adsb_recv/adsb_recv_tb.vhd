@@ -42,8 +42,7 @@ begin
 	port map (clk, rst, adcclk, adc_d, adsb_tx, uart_tx, sof_led, full_led);
 	clk <= not clk after 50 ns;
 	rst <= '0' after 200 ns;
-	-- TODO: found a bug, if input MSB is set, the matched filter stops working!
-	adc_d(7) <= '0';
+	adc_d(7) <= adsb_tx;
 	adc_d(6) <= adsb_tx;
 	adc_d(5) <= adsb_tx;
 	adc_d(4) <= adsb_tx;
