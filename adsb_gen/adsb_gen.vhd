@@ -40,9 +40,11 @@ begin
 			bit_cnt <= (others => '0');
 			state <= idle;
 			busy <= '1';
+			q <= '0';
 		else
 				case state is 
 					when idle =>
+						q <= '0';
 						busy <= '0';
 						bit_cnt <= (others => '0');
 						clk_cnt <= (others => '0');
