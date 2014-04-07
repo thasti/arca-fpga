@@ -21,7 +21,8 @@ architecture behav of adsb_recv_tb is
 		adcclk	: in std_logic;
 		adc_d	: in std_logic_vector(width-1 downto 0);
 		uart_tx	: out std_logic;
-		sof_led	: out std_logic
+		sof_led	: out std_logic;
+		full_led: out std_logic
 	);
 	end component;
 
@@ -31,11 +32,12 @@ signal adcclk	: std_logic;
 signal adc_d	: std_logic_vector(7 downto 0) := (others => '0');
 signal uart_tx	: std_logic;
 signal sof_led	: std_logic;
+signal full_led : std_logic;
 
 begin 
 	dut : adsb_recv
 	generic map (width => 8, samp_rate => 16)
-	port map (clk, rst, adcclk, adc_d, uart_tx, sof_led);
+	port map (clk, rst, adcclk, adc_d, uart_tx, sof_led, full_led);
 	clk <= not clk after 50 ns;
 	rst <= '0' after 200 ns;
 

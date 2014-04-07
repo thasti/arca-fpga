@@ -18,7 +18,8 @@ entity adsb_recv is
 		adcclk	: in std_logic;
 		adc_d	: in std_logic_vector(width-1 downto 0);
 		uart_tx	: out std_logic;
-		sof_led	: out std_logic
+		sof_led	: out std_logic;
+		full_led : out std_logic
 	);
 end adsb_recv;
 
@@ -46,6 +47,7 @@ architecture behav of adsb_recv is
 	signal fifo_we : std_logic;
 
 	signal bit_reset : std_logic;
+	signal fifo_full : std_logic;
 begin
 
 	
@@ -97,7 +99,8 @@ begin
 			  rst => rst,
 			  we => fifo_we,
 			  d => fifo_d,
-			  tx => uart_tx);
+			  tx => uart_tx,
+		  	  full => fifo_full);
 	frame_ctrl : entity work.frame_ctrl
 		port map (clk => clk,
 			  rst => rst,
@@ -114,6 +117,12 @@ begin
 			  input => preamble_found,
 			  led => sof_led);
 
+	full_led_timer : entity work.led_timer
+		generic map (on_time_exp => 22)
+		port map (clk => clk,
+			  rst => rst,
+			  input => fifo_full,
+			  led => full_led);
 
 	bit_reset <= rst or preamble_found;
 	process

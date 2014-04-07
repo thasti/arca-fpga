@@ -13,6 +13,7 @@ architecture behav of uart_tb is
 		rst : in std_logic;
 		d   : in std_logic_vector(7 downto 0);
 		we  : in std_logic;
+		full : out std_logic;
 		tx  : out std_logic
 	);
 	end component;
@@ -22,9 +23,10 @@ architecture behav of uart_tb is
 	signal d : std_logic_vector(7 downto 0) := x"00";
 	signal we : std_logic := '0';
 	signal tx : std_logic;
+	signal full : std_logic;
 begin	
 	tx0 : uart
-		port map (clk => clk, rst => rst, d => d, we => we, tx => tx);
+		port map (clk => clk, rst => rst, d => d, we => we, tx => tx, full => full);
 
         clk	<= not clk after 10 ns;
 	rst 	<= '0' after 50 ns;

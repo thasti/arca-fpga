@@ -16,6 +16,7 @@ entity uart is
 		rst	: in std_logic;
 		we	: in std_logic;
 		d	: in std_logic_vector(7 downto 0);
+		full	: out std_logic;
 		tx	: out std_logic
 	);	
 end uart;
@@ -109,7 +110,7 @@ begin
 	 
 	fifo0 : fifo
 		generic map(num_words => fifo_depth, word_width => 8, al_empty_lvl => 3, al_full_lvl => 3) 
-		port map (clk => clk, rst => rst, d => d, we => we, q => uart_d(8 downto 1), re => fifo_re, empty => fifo_empty);
+		port map (clk => clk, rst => rst, d => d, we => we, q => uart_d(8 downto 1), re => fifo_re, empty => fifo_empty, full => full);
 		
 	uart_d(9) <= start_bit;
 	uart_d(0) <= stop_bit;

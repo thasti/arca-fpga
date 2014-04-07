@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.51 (w)1999-2013 BSI
-[*] Sat Apr  5 15:28:16 2014
+[*] Mon Apr  7 10:51:23 2014
 [*]
 [dumpfile] "/home/thasti/projekte/arca/vhdl/adsb_recv/output.ghw"
-[dumpfile_mtime] "Sat Apr  5 15:26:49 2014"
-[dumpfile_size] 9551505
+[dumpfile_mtime] "Mon Apr  7 10:50:54 2014"
+[dumpfile_size] 10751662
 [savefile] "/home/thasti/projekte/arca/vhdl/adsb_recv/gtkwave.sav"
 [timestart] 0
 [size] 1024 551
-[pos] 0 0
-*-43.000000 764150000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -2 -2
+*-34.000000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.adsb_recv_tb.
 [treeopen] top.adsb_recv_tb.dut.
@@ -73,9 +73,10 @@ top.adsb_recv_tb.dut.uart_fifo.fifo0.empty
 top.adsb_recv_tb.dut.uart_fifo.fifo0.re
 @22
 #{top.adsb_recv_tb.dut.uart_fifo.uart_d[9:0]} top.adsb_recv_tb.dut.uart_fifo.uart_d[9] top.adsb_recv_tb.dut.uart_fifo.uart_d[8] top.adsb_recv_tb.dut.uart_fifo.uart_d[7] top.adsb_recv_tb.dut.uart_fifo.uart_d[6] top.adsb_recv_tb.dut.uart_fifo.uart_d[5] top.adsb_recv_tb.dut.uart_fifo.uart_d[4] top.adsb_recv_tb.dut.uart_fifo.uart_d[3] top.adsb_recv_tb.dut.uart_fifo.uart_d[2] top.adsb_recv_tb.dut.uart_fifo.uart_d[1] top.adsb_recv_tb.dut.uart_fifo.uart_d[0]
-@29
-top.adsb_recv_tb.uart_tx
 @28
+top.adsb_recv_tb.uart_tx
 top.adsb_recv_tb.sof_led
+@29
+top.adsb_recv_tb.full_led
 [pattern_trace] 1
 [pattern_trace] 0
