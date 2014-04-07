@@ -1,13 +1,13 @@
 % rc filter test bench
 
 clear all
-tc = 10;
-alpha_ideal = 127/(1+tc);
+tc = 12;
+alpha_ideal = 256/(1+tc);
 
 in = int8(dlmread('rc_filt_test.txt'));
 out_ideal = zeros(length(in)+1,1);
 out_quant = int8(zeros(length(in)+1,1));
-out_vhdl = int8(dlmread('rc_filt_out.txt'));
+out_vhdl = uint8(dlmread('rc_filt_out.txt'));
 
 for i=1:length(in)
     out_quant(i+1) = int8(int16(out_quant(i)) + ...

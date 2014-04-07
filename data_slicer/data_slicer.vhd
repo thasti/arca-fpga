@@ -1,6 +1,6 @@
 -- data slicer
 -- 
--- data is signed samples
+-- data is unsigned samples
 -- output is binary data
 library ieee;
 use ieee.std_logic_1164.all;
@@ -41,17 +41,17 @@ architecture behav of data_slicer is
 	);
 	end component;
 
-	signal thresh_min : signed(width-1 downto 0);
-	signal thresh_max : signed(width-1 downto 0);
-	signal thresh : signed(width-1 downto 0);
+	signal thresh_min : unsigned(width-1 downto 0);
+	signal thresh_max : unsigned(width-1 downto 0);
+	signal thresh : unsigned(width-1 downto 0);
 begin
 	min_pd : rc_filt
 	generic map(time_const => sam_per_bit*5, width => width, pd_min => '1', pd_max => '0')
-	port map(clk, inclk, open, rst, d, signed(q) => thresh_min);
+	port map(clk, inclk, open, rst, d, unsigned(q) => thresh_min);
 
 	max_pd : rc_filt
 	generic map(time_const => sam_per_bit*5, width => width, pd_min => '0', pd_max => '1')
-	port map(clk, inclk, open, rst, d, signed(q) => thresh_max);
+	port map(clk, inclk, open, rst, d, unsigned(q) => thresh_max);
 	process
 	begin
 		wait until rising_edge(clk);
@@ -60,7 +60,7 @@ begin
 			q <= '0';
 		else 
 			if inclk = '1' then
-				if signed(d) > thresh then
+				if unsigned(d) > thresh then
 					q <= '1';
 				else
 					q <= '0';
