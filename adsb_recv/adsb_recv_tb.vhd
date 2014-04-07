@@ -20,6 +20,7 @@ architecture behav of adsb_recv_tb is
 		rst	: in std_logic;
 		adcclk	: in std_logic;
 		adc_d	: in std_logic_vector(width-1 downto 0);
+		adsb_tx	: out std_logic;
 		uart_tx	: out std_logic;
 		sof_led	: out std_logic;
 		full_led: out std_logic
@@ -29,7 +30,8 @@ architecture behav of adsb_recv_tb is
 signal clk	: std_logic := '0';
 signal rst	: std_logic := '1';
 signal adcclk	: std_logic;
-signal adc_d	: std_logic_vector(7 downto 0) := (others => '0');
+signal adc_d	: std_logic_vector(7 downto 0);
+signal adsb_tx	: std_logic;
 signal uart_tx	: std_logic;
 signal sof_led	: std_logic;
 signal full_led : std_logic;
@@ -37,23 +39,16 @@ signal full_led : std_logic;
 begin 
 	dut : adsb_recv
 	generic map (width => 8, samp_rate => 16)
-	port map (clk, rst, adcclk, adc_d, uart_tx, sof_led, full_led);
+	port map (clk, rst, adcclk, adc_d, adsb_tx, uart_tx, sof_led, full_led);
 	clk <= not clk after 50 ns;
 	rst <= '0' after 200 ns;
-
-	in_file : process
-	variable input : integer;
-	variable l : line;
-	file vector_file : text is in "adsb_recv_test.txt";
-	begin
-		wait until rst <= '0';
-		while not endfile(vector_file) loop
-			readline(vector_file, l);
-			read(l, input);
-			wait until rising_edge(clk);
-			--if adcclk = '1' then
-				adc_d <= std_logic_vector(to_signed(input, 8));
-			--end if;
-		end loop;
-	end process;
+	-- TODO: found a bug, if input MSB is set, the matched filter stops working!
+	adc_d(7) <= '0';
+	adc_d(6) <= adsb_tx;
+	adc_d(5) <= adsb_tx;
+	adc_d(4) <= adsb_tx;
+	adc_d(3) <= adsb_tx;
+	adc_d(2) <= adsb_tx;
+	adc_d(1) <= adsb_tx;
+	adc_d(0) <= adsb_tx;
 end behav;

@@ -17,6 +17,7 @@ entity adsb_recv is
 		rst	: in std_logic;
 		adcclk	: in std_logic;
 		adc_d	: in std_logic_vector(width-1 downto 0);
+		adsb_tx	: out std_logic;
 		uart_tx	: out std_logic;
 		sof_led	: out std_logic;
 		full_led : out std_logic
@@ -50,7 +51,14 @@ architecture behav of adsb_recv is
 	signal fifo_full : std_logic;
 begin
 
-	
+	adsb_gen : entity work.adsb_gen
+		generic map (clk_div => 8)
+		port map (clk => clk,
+			  rst => rst,
+			  trigger => '1',
+			  q => adsb_tx,
+			  busy => open);
+
 	matched_filt : entity work.matched_filt
 		generic map (filter_len => fs_msps/2, width => width)
 		port map (clk => clk,
