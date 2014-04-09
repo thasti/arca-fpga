@@ -26,7 +26,7 @@ end rc_filt;
 
 architecture behav of rc_filt is
 	signal fil_out : unsigned(width-1 downto 0);
-	signal alpha : unsigned(width-1 downto 0) := to_unsigned(integer(real((2**(width-1)-1))/(real(time_const)+1.0)), width);
+	constant alpha : unsigned(width-1 downto 0) := to_unsigned(integer(real((2**(width-1)-1))/(real(time_const)+1.0)), width);
 begin
 	process
 	begin
