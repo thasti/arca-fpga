@@ -49,13 +49,16 @@ architecture behav of adsb_recv is
 
 	signal bit_reset : std_logic;
 	signal fifo_full : std_logic;
+	
+	signal cnt_trg :std_logic;
+	signal cnt : std_logic_vector(23 downto 0) := (others => '0');
 begin
 
 	adsb_gen : entity work.adsb_gen
 		generic map (clk_div => 8)
 		port map (clk => clk,
 			  rst => rst,
-			  trigger => '1',
+			  trigger => cnt_trg,
 			  q => adsb_tx,
 			  busy => open);
 
@@ -133,13 +136,22 @@ begin
 			  led => full_led);
 
 	bit_reset <= rst or preamble_found;
+
 	process
 	begin
-		wait until rising_edge(clk);
+	 	wait until rising_edge(clk);
 		if rst = '1' then
 			-- reset all outputs that are not reset by other components
+			cnt <= (others => '0');
+			cnt_trg <= '0';
 		else 
 			-- whatever
-		end if;
+			cnt <= std_logic_vector(unsigned(cnt) + 1);
+			if unsigned(cnt) = to_unsigned(0, cnt'length) then
+				cnt_trg <= '1';
+			else
+				cnt_trg <= '0';
+			end if;
+		end if; -- reset
 	end process;
 end behav;
