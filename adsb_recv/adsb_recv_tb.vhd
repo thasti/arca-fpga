@@ -42,9 +42,9 @@ begin
 	port map (clk, rst, adcclk, adc_d, adsb_tx, uart_tx, sof_led, full_led);
 	clk <= not clk after 50 ns;
 	rst <= '0' after 200 ns;
-	adc_d(7) <= '0';
+	adc_d(7) <= adsb_tx;
 	adc_d(6) <= '0';
-	adc_d(5) <= adsb_tx;
+	adc_d(5) <= '0';
 	adc_d(4) <= '0';
 	adc_d(3) <= '0';
 	adc_d(2) <= '0';

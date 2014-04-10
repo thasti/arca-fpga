@@ -25,10 +25,6 @@ entity adsb_recv is
 end adsb_recv;
 
 architecture behav of adsb_recv is
-	constant adc_bits : positive := 8;
-	constant fs_msps : positive := 16;
-	constant fsys	: positive := 32;
-
 	-- matched filter
 	signal mf_clk : std_logic;
 	signal mf_q : std_logic_vector(width-1 downto 0);
@@ -55,7 +51,7 @@ architecture behav of adsb_recv is
 begin
 
 	adsb_gen : entity work.adsb_gen
-		generic map (clk_div => 8)
+		generic map (clk_div => samp_rate/2)
 		port map (clk => clk,
 			  rst => rst,
 			  trigger => cnt_trg,
@@ -63,7 +59,7 @@ begin
 			  busy => open);
 
 	matched_filt : entity work.matched_filt
-		generic map (filter_len => fs_msps/2, width => width)
+		generic map (filter_len => samp_rate/2, width => width)
 		port map (clk => clk,
 			  rst => rst,
 			  inclk => clk,
@@ -72,7 +68,7 @@ begin
 			  q => mf_q);
 	
 	early_late : entity work.early_late
-		generic map (width => width, sam_per_bit => fs_msps/2)
+		generic map (width => width, sam_per_bit => samp_rate/2)
 		port map (clk => clk,
 			  rst => bit_reset,
 			  inclk => mf_clk,
@@ -80,7 +76,7 @@ begin
 			  outclk => rec_clk);
 
 	data_slicer : entity work.data_slicer
-		generic map (width => adc_bits, sam_per_bit => fs_msps/2)
+		generic map (width => width, sam_per_bit => samp_rate/2)
 		port map (clk => clk, 
 			  rst => rst, 
 			  inclk => mf_clk, 
@@ -98,7 +94,7 @@ begin
 			  err => manchester_err);
 
 	preamble_det : entity work.preamble_det
-		generic map (sam_per_bit => fs_msps/2)
+		generic map (sam_per_bit => samp_rate/2)
 		port map (clk => clk,
 			  rst => rst,
 		 	  inclk => ds_clk,
