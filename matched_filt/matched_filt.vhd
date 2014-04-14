@@ -38,8 +38,8 @@ begin
 			delay <= (others => (others => '0'));
 		else 
 			if inclk = '1' then
-				delay(1 to delay'high) <= delay(0 to delay'high-1);
 				delay(0) <= unsigned(d);
+				delay(1 to delay'high) <= delay(0 to delay'high-1);
 				sum := (others => '0');
 				for i in 0 to delay'high loop
 					sum := sum + resize(delay(i), width + sum_len);

@@ -62,7 +62,7 @@ begin
 		generic map (filter_len => samp_rate/2, width => width)
 		port map (clk => clk,
 			  rst => rst,
-			  inclk => clk,
+			  inclk => adcclk,
 			  outclk => mf_clk,
 			  d => adc_d,
 			  q => mf_q);
@@ -101,7 +101,7 @@ begin
 			  d => ds_d,
 			  valid => preamble_found);
 	uart_fifo : entity work.uart
-		generic map (fifo_depth => 64)
+		generic map (fifo_depth => 512)
 		port map (clk => clk,
 			  rst => rst,
 			  we => fifo_we,
@@ -148,6 +148,7 @@ begin
 			else
 				cnt_trg <= '0';
 			end if;
+				
 		end if; -- reset
 	end process;
 end behav;

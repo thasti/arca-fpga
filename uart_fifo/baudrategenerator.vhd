@@ -8,7 +8,7 @@ entity baudrategenerator is
 
 	generic
 	(
-		NUM_BAUD_CLOCK_TICKS : unsigned := to_unsigned(434-1,9); -- 50.000.000 / 115.200 = 434,03
+		NUM_BAUD_CLOCK_TICKS : unsigned := to_unsigned(69-1,9); -- 8.000.000 / 115.200 = 69
 		TX_TRIGGER_VALUE : unsigned :=  to_unsigned(1-1,9) -- ???
 	);
 
