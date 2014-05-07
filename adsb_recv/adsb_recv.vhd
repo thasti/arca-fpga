@@ -47,7 +47,7 @@ architecture behav of adsb_recv is
 	signal fifo_full : std_logic;
 	
 	signal cnt_trg :std_logic;
-	signal cnt : std_logic_vector(23 downto 0) := (others => '0');
+	signal cnt : std_logic_vector(22 downto 0) := (others => '0');
 begin
 
 	adsb_gen : entity work.adsb_gen
