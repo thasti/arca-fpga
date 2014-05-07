@@ -92,6 +92,8 @@ architecture behav of uart is
 	signal P_S : std_logic;
         
 	signal uart_d : std_logic_vector(9 downto 0) := start_bit & "00000000" & stop_bit;
+	signal fifo_q : std_logic_vector(7 downto 0);
+	
 	signal sr_Q : std_logic_vector(9 downto 0);
 
 	signal fifo_re : std_logic;
@@ -110,10 +112,19 @@ begin
 	 
 	fifo0 : fifo
 		generic map(num_words => fifo_depth, word_width => 8, al_empty_lvl => 3, al_full_lvl => 3) 
-		port map (clk => clk, rst => rst, d => d, we => we, q => uart_d(8 downto 1), re => fifo_re, empty => fifo_empty, full => full);
+		port map (clk => clk, rst => rst, d => d, we => we, q => fifo_q, re => fifo_re, empty => fifo_empty, full => full);
 		
 	uart_d(9) <= start_bit;
 	uart_d(0) <= stop_bit;
+	
+	uart_d(1) <= fifo_q(7);
+	uart_d(2) <= fifo_q(6);
+	uart_d(3) <= fifo_q(5);
+	uart_d(4) <= fifo_q(4);
+	uart_d(5) <= fifo_q(3);
+	uart_d(6) <= fifo_q(2);
+	uart_d(7) <= fifo_q(1);
+	uart_d(8) <= fifo_q(0);
 
 	rst_n	<= not rst;
         

@@ -28,8 +28,8 @@ begin
 	tx0 : uart
 		port map (clk => clk, rst => rst, d => d, we => we, tx => tx, full => full);
 
-        clk	<= not clk after 10 ns;
-	rst 	<= '0' after 50 ns;
+        clk	<= not clk after 62.5 ns;
+	rst 	<= '0' after 20 ns;
         
 	process
 	begin

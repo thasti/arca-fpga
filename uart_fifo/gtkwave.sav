@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.51 (w)1999-2013 BSI
-[*] Mon Apr  7 10:44:39 2014
+[*] Tue Apr 15 15:40:11 2014
 [*]
 [dumpfile] "/home/thasti/projekte/arca/vhdl/uart_fifo/output.ghw"
-[dumpfile_mtime] "Mon Apr  7 10:44:28 2014"
-[dumpfile_size] 456539
+[dumpfile_mtime] "Tue Apr 15 15:40:06 2014"
+[dumpfile_size] 5702464
 [savefile] "/home/thasti/projekte/arca/vhdl/uart_fifo/gtkwave.sav"
 [timestart] 0
 [size] 1024 551
 [pos] 0 0
-*-38.000000 160000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-39.000000 160000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.uart_tb.
 [treeopen] top.uart_tb.tx0.
