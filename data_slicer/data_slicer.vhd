@@ -26,7 +26,8 @@ architecture behav of data_slicer is
 	component rc_filt
 	generic (
 		time_const	: positive;
-		width		: positive;
+		iowidth		: positive;
+		procwidth	: positive;
 		pd_min		: std_logic;
 		pd_max		: std_logic
 	);
@@ -36,8 +37,8 @@ architecture behav of data_slicer is
 		inclk	: in std_logic;
 		outclk	: out std_logic;
 		rst	: in std_logic;
-		d	: in std_logic_vector(width-1 downto 0);
-		q	: out std_logic_vector(width-1 downto 0)
+		d	: in std_logic_vector(iowidth-1 downto 0);
+		q	: out std_logic_vector(iowidth-1 downto 0)
 	);
 	end component;
 
@@ -46,11 +47,11 @@ architecture behav of data_slicer is
 	signal thresh : unsigned(width-1 downto 0);
 begin
 	min_pd : rc_filt
-	generic map(time_const => sam_per_bit*5, width => width, pd_min => '1', pd_max => '0')
+	generic map(time_const => sam_per_bit*5, iowidth => width, procwidth => width + 4, pd_min => '1', pd_max => '0')
 	port map(clk, inclk, open, rst, d, unsigned(q) => thresh_min);
 
 	max_pd : rc_filt
-	generic map(time_const => sam_per_bit*5, width => width, pd_min => '0', pd_max => '1')
+	generic map(time_const => sam_per_bit*5, iowidth => width, procwidth => width + 4, pd_min => '0', pd_max => '1')
 	port map(clk, inclk, open, rst, d, unsigned(q) => thresh_max);
 	process
 	begin

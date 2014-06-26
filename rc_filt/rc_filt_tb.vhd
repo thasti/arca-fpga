@@ -12,7 +12,8 @@ architecture behav of rc_filt_tb is
 	component rc_filt
 	generic (
 		time_const	: positive;
-		width		: positive;
+		iowidth		: positive;
+		procwidth	: positive;
 		pd_min		: std_logic;
 		pd_max		: std_logic
 	);
@@ -22,8 +23,8 @@ architecture behav of rc_filt_tb is
 		inclk	: in std_logic;
 		outclk	: out std_logic;
 		rst	: in std_logic;
-		d	: in std_logic_vector(width-1 downto 0);
-		q	: out std_logic_vector(width-1 downto 0)
+		d	: in std_logic_vector(iowidth-1 downto 0);
+		q	: out std_logic_vector(iowidth-1 downto 0)
 	);
 	end component;
 
@@ -36,7 +37,7 @@ signal q	: std_logic_vector(7 downto 0);
 
 begin 
 	dut : rc_filt
-	generic map (time_const => 10, width => 8, pd_min => '0', pd_max => '0')
+	generic map (time_const => 10, iowidth => 8, procwidth => 12, pd_min => '0', pd_max => '0')
 	port map (clk, inclk, outclk, rst, d, q);
 	clk <= not clk after 50 ns;
 	rst <= '0' after 200 ns;

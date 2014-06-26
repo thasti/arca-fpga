@@ -9,7 +9,8 @@ use ieee.numeric_std.all;
 entity rc_filt is
 	generic (
 		time_const	: positive := 8;
-		width		: positive := 8;
+		iowidth		: positive := 8;
+		procwidth	: positive := 12;
 		pd_min		: std_logic := '0';
 		pd_max		: std_logic := '0'
 	);
@@ -19,14 +20,15 @@ entity rc_filt is
 		inclk	: in std_logic;
 		outclk	: out std_logic;
 		rst	: in std_logic;
-		d	: in std_logic_vector(width-1 downto 0);
-		q	: out std_logic_vector(width-1 downto 0)
+		d	: in std_logic_vector(iowidth-1 downto 0);
+		q	: out std_logic_vector(iowidth-1 downto 0)
 	);
 end rc_filt;
 
 architecture behav of rc_filt is
-	signal fil_out : unsigned(width-1 downto 0);
-	constant alpha : unsigned(width-1 downto 0) := to_unsigned(integer(real((2**(width-1)-1))/(real(time_const)+1.0)), width);
+	signal fil_out : unsigned(procwidth-1 downto 0);
+	signal padding : std_logic_vector(procwidth-iowidth-1 downto 0);
+	constant alpha : unsigned(procwidth-1 downto 0) := to_unsigned(integer(real((2**(procwidth-1)-1))/(real(time_const)+1.0)), procwidth);
 begin
 	process
 	begin
@@ -38,15 +40,15 @@ begin
 			if inclk = '1' then
 				-- y[i] := y[i-1] + tc * (x[i] - y[i-1])
 				fil_out <= fil_out +
-					   resize(shift_right(alpha * unsigned(d) - alpha * fil_out,8),8);
+					   resize(shift_right(alpha * unsigned(d & padding) - alpha * fil_out,procwidth),procwidth);
 				if pd_min = '1' then
-					if unsigned(d) < fil_out then
-						fil_out <= unsigned(d);
+					if unsigned(d & padding) < fil_out then
+						fil_out <= unsigned(d & padding);
 					end if;
 				end if;
 				if pd_max = '1' then
-					if unsigned(d) > fil_out then
-						fil_out <= unsigned(d);
+					if unsigned(d & padding) > fil_out then
+						fil_out <= unsigned(d & padding);
 					end if;
 				end if;
 				
@@ -54,5 +56,10 @@ begin
 			end if;
 		end if;
 	end process;
-	q <= std_logic_vector(fil_out);
+	
+	pad_rc : for i in 0 to padding'high generate
+		padding(i) <= d(0);
+	end generate;
+	
+	q <= std_logic_vector(fil_out(procwidth-1 downto procwidth-iowidth));
 end behav;
